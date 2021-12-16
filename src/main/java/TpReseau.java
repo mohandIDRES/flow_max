@@ -18,6 +18,7 @@ public class TpReseau {
         try {
             fs.readAll("/home/idres/Master/RI/data.txt");
         } catch( IOException e) {
+            System.out.println("fichier introuvable");
 
         }
         System.out.println("Le nombre de noeud :"+g.getNodeCount());
