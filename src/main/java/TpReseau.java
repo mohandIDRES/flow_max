@@ -20,8 +20,16 @@ public class TpReseau {
         } catch( IOException e) {
 
         }
+        System.out.println("Le nombre de noeud :"+g.getNodeCount());
+        System.out.println("Le degré moyen :"+averageDegree(g));
+        System.out.println("Le coefficient de clustering :"+averageClusteringCoefficient(g));
+        System.out.println("Le coefficient de clustering pour un réseau aléatoire de la même taille et du même degré moyen :"+averageDegree(g)/g.getNodeCount());
 
-
-
+        /*
+Exo 5
+La distance moyenne d'un reseau petit monde
+<d> = ln N / ln<K>
+6.7
+*/
     }
 }
