@@ -1,7 +1,7 @@
 # MesuresDeRéseauDInteraction
 
 Apres avoir télécharger le fichier des données , on a utilisé GraphStream pour lire ces données .
-**Question 1** :
+**Question 2** :
 Pour cette question on utilise des fonctions de la classe **Toolkit**
 - **Nombre de noeuds**
 
@@ -20,7 +20,7 @@ Le coefficient de clustering :**0.6324308280637396**
 Le coefficient de clustering d'un réseau quelconque est le degré moyen `<K>` / le nombre de noeuds `N`. </br>
 pour un graphe de même degré et de même taille , le coefficient de clustering est  : **2.0884599814397534E-5**
 
-**Question 2** :
+**Question 3** :
 
 1- Un réseau connex est un réseau dont à partir d'un sommet on peut visiter n'importe quel autre sommet du réseau .
 une méthode de la bibliothéque ToolKit nous permet de savoir si un graphe est connex ou pas , c'est la méthode isConnected(graph) .
@@ -29,3 +29,12 @@ Donc pour un réseau aléatoire de même taille et même degré (ce qui fait `<k
 ln(N) = 12.666909387`) , on constate que `〈k〉< ln(N)` , donc le réseau n'est pas connex .
 
 Un réseau aleatoire de même taille est connex si seulement si le degré moyen de ce réseau est superieur à 12.666909387.
+
+
+**Question 4** :
+La destribution des degrés est la probabilité qu'un noeud ait le degré `K` </br>
+Pour calculer la destribution des degrés , on fait appel a la fonction degreeDistribution(graph) de ToolKit , cette fonction renvoie un tabelau tel que l'indice du tableau represente le degré et sa valeur est le nombre de noeuds ayant ce degré. </br>
+On stocke les resulats obtenus dans un fichier ***"destDEG.dat"*** ,  qu'on va utiliser pour tracer les graphes avec `gnuplot` .
+
+- Graphe des destributions en echelle linéaire :<img src="destributionDegre_lineaire.png">
+- Graphe des destributions en echelle log-log <img src="destributionDegre_log.png">

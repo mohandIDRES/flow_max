@@ -2,7 +2,11 @@ import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.stream.file.FileSourceEdge;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Locale;
 
 import static org.graphstream.algorithm.Toolkit.*;
 
@@ -35,5 +39,22 @@ public class TpReseau {
 
 
         System.out.println("un réseau aleatoire de la même taille et degré moyen sera-t-il connex ? =>  NON");
+
+        int[] destDeg = degreeDistribution(g);
+        String filename = "destDEG.dat";
+        try {
+            String filepath=System.getProperty("user.dir")+ File.separator+filename;
+            FileWriter fw = new FileWriter(filepath);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (int i = 0; i < destDeg.length; i++) {
+                String line = "";
+                if (destDeg[i] != 0) {
+                    bw.write(String.format(Locale.US, "%6d%20.8f%n", i, (double)destDeg[i] / g.getNodeCount()));
+                }
+            }
+            bw.close();
+        }catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }
