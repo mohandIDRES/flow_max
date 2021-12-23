@@ -48,7 +48,7 @@ public class BarabasiAlbert {
         System.out.println("Degré moyen d'un réseau aleatoire" + averageDegree(graphRandom));
         System.out.println("Le coefficient de clustering d'un réseau aleatoire :" + averageClusteringCoefficient(graphRandom));
         System.out.println("Connexité du graphe aléatoire : " + isConnected(graphRandom));
-/*
+
         int[] destDeg = degreeDistribution(graph);
         String filename = "destDEGBAL.dat";
         try {
@@ -104,6 +104,6 @@ public class BarabasiAlbert {
         } catch (IOException e) {
             e.printStackTrace();
         }
-*/
+
     }
     }

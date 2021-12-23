@@ -1,7 +1,11 @@
+import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
+import org.graphstream.algorithm.generator.Generator;
+import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.BreadthFirstIterator;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
+import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.stream.file.FileSourceEdge;
 
 import java.io.BufferedWriter;
@@ -17,6 +21,8 @@ import static org.graphstream.algorithm.Toolkit.*;
 public class TpReseau {
     public static void main(String [] args) {
 
+
+
         Graph g = new DefaultGraph("G");
         FileSourceEdge fs = new FileSourceEdge();
 
@@ -31,7 +37,7 @@ public class TpReseau {
         /*Pour afficher les données */
         //      System.setProperty("org.graphstream.ui", "swing");
 //        g.display();
-        System.out.println("Le nombre de noeud :" + g.getNodeCount());
+       System.out.println("Le nombre de noeud :" + g.getNodeCount());
         System.out.println("Le degré moyen :" + averageDegree(g));
         System.out.println("Le coefficient de clustering :" + averageClusteringCoefficient(g));
         System.out.println("Le coefficient de clustering pour un réseau aléatoire de la même taille et du même degré moyen :" + averageDegree(g) / g.getNodeCount());
@@ -43,6 +49,8 @@ public class TpReseau {
 
 
         System.out.println("un réseau aleatoire de la même taille et degré moyen sera-t-il connex ? =>  NON");
+
+
 
         int[] destDeg = degreeDistribution(g);
         String filename = "destDEG.dat";
@@ -101,5 +109,4 @@ public class TpReseau {
         }
 
     }
-
 }
