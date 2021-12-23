@@ -38,3 +38,26 @@ On stocke les resulats obtenus dans un fichier ***"destDEG.dat"*** ,  qu'on va u
 
 - Graphe des destributions en echelle linéaire :<img src="destributionDegre_lineaire.png">
 - Graphe des destributions en echelle log-log <img src="destributionDegre_log.png">
+
+on observe une ligne droite en analysant le graphe en echelle log-log , cela signifie que la distribution de degré suit une loi de puissance.
+
+**Question 5** :
+La distance moyenne d'un graphe est la somme des distances entre un noeud source et tous les autres noeuds du graphe .
+Comme notre graphe est trés grand , on prend un echantillon de 1000 noeuds au hasard , et on calcule la somme des distances vers les autres noeuds .</br>
+La disatance moyenne calculée avec 1000 noeuds au hasard est : **6.8094198435726** .</br>
+D'aprés le resulat obtenu , l'hypothése de six degrés de séparation est confirmée . </br>
+Pour savoir si c'est un réseau `petit monde` if faut vérifier que `<d> = d_max = ln(N) / ln<k>` . </br>
+ `<d>` = 6.8094198435726 . </br>
+`d_max = ln(317080) / ln (6,6220889) ` = 6.70061182375 </br>
+Les deux valeurs de `<d>` et ` d_max` sont pas égaux , mais comme notre méthode ne permet pas d'avoir des resulats avec une grande précision , on peut dire que le réseau est un petot monde . </br>
+La distance moyenne dans un réseau aléatoire avec les mêmes caractéristiques est **6.700611818856679 ≈ d_max** .  </br>
+
+Le graphe des distribution des distances resultant est le suivant  :
+<img src="Distances.png">
+
+
+
+
+
+
+
