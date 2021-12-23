@@ -64,7 +64,16 @@ Pour générer un réseau avec la méthode d'attachement préférentiel (Barabas
 - Le coefficient de clustering d'un réseau Barabasi-Albert :**4.156591383224424E-4**
 - Le graphe est-il connex  => Oui .
 
+**Les graphes resultants avec le modèle Barabasi-Albert**
+<img src="destributionDegre_BAL_lineaire.png">
+<img src="destributionDegre_BAL_log.png">
+<img src="Distances_Bal.png">
 
+**Conclusion**
+
+- Les résultats expérimentaux correspondent-ils aux prédictions théorique ? =>  Vrai
+- On remarque que les modèles théoriques de génération sont assez proches de la réalité concernant les degrés et distances, mais restent très loin du compte en termes de clustering.
+- Un reseau Barabasi-Albert est connex contrairement a un reseau aleatoire .
 
 
 
