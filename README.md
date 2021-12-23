@@ -56,6 +56,16 @@ Le graphe des distribution des distances resultant est le suivant  :
 <img src="Distances.png">
 L'hypothése qu'on peut formuler sur ce type de distribution c'est qu'elle suit **la loi Binomiale**
 
+**Question 6** :
+Pour générer un réseau avec la méthode d'attachement préférentiel (Barabasi-Albert) , on utilise un générateur dans GraphStream appelé **BarabasiAlbertGenerator(degré)** avec le degré maximum d'un noeud en paramètre .
+***Les resultats***
+- Nombre de noeuds d'un réseau Barabasi-Albert  : **317080**
+- Degré moyen d'un réseau Barabasi-Albert : **6.998549461364746**
+- Le coefficient de clustering d'un réseau Barabasi-Albert :**4.156591383224424E-4**
+- Le graphe est-il connex  => Oui .
+
+
+
 
 
 
