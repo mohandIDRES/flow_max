@@ -54,6 +54,7 @@ La distance moyenne dans un réseau aléatoire avec les mêmes caractéristiques
 
 Le graphe des distribution des distances resultant est le suivant  :
 <img src="Distances.png">
+L'hypothése qu'on peut formuler sur ce type de distribution c'est qu'elle suit **la loi Binomiale**
 
 
 
