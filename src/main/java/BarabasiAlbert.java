@@ -1,5 +1,6 @@
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
+import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.BreadthFirstIterator;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -17,8 +18,8 @@ import static org.graphstream.algorithm.Toolkit.*;
 
 public class BarabasiAlbert {
     public static void main(String [] args) {
-        System.out.println("Question 6  :");
 
+        System.out.println("* Creation Reseau Barabasi-Albert");
         Graph graph = new SingleGraph("BAN");
         Generator gen = new BarabasiAlbertGenerator(6); // création d'un réseau dont chaque noeud à un degré entre 1 et 4
 
@@ -29,13 +30,25 @@ public class BarabasiAlbert {
         //   System.setProperty("org.graphstream.ui", "swing");
         //  graph.display();
 
+        System.out.println("Creation Reseau random avec la meme taille et degree");
+        Graph graphRandom = new SingleGraph("Random");
+        Generator randomGraph = new RandomGenerator(6);
+        randomGraph.addSink(graphRandom);
+        randomGraph.begin();
+        while (graphRandom.getNodeCount() < 317080 && randomGraph.nextEvents());
+        randomGraph.end() ;
+
 
         System.out.println("Nombre de noeuds d'un réseau Barabasi-Albert  : " + graph.getNodeCount());
         System.out.println("Degré moyen d'un réseau Barabasi-Albert" + averageDegree(graph));
         System.out.println("Le coefficient de clustering d'un réseau Barabasi-Albert :" + averageClusteringCoefficient(graph));
+        System.out.println("Connexité du graphe Barabasi-Albert : " + isConnected(graph));
 
-        System.out.println("Connexité du graphe aléatoire : " + isConnected(graph));
-
+        System.out.println("Nombre de noeuds d'un réseau Aleatoire  : " + graphRandom.getNodeCount());
+        System.out.println("Degré moyen d'un réseau aleatoire" + averageDegree(graphRandom));
+        System.out.println("Le coefficient de clustering d'un réseau aleatoire :" + averageClusteringCoefficient(graphRandom));
+        System.out.println("Connexité du graphe aléatoire : " + isConnected(graphRandom));
+/*
         int[] destDeg = degreeDistribution(graph);
         String filename = "destDEGBAL.dat";
         try {
@@ -91,6 +104,6 @@ public class BarabasiAlbert {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+*/
     }
     }
