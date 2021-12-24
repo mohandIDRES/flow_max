@@ -25,7 +25,7 @@ public class BarabasiAlbert {
 
         gen.addSink(graph);
         gen.begin();
-        while (graph.getNodeCount() < 317080 && gen.nextEvents());
+        while (graph.getNodeCount() < 31708 && gen.nextEvents());
         gen.end();
         //   System.setProperty("org.graphstream.ui", "swing");
         //  graph.display();
@@ -35,22 +35,30 @@ public class BarabasiAlbert {
         Generator randomGraph = new RandomGenerator(6);
         randomGraph.addSink(graphRandom);
         randomGraph.begin();
-        while (graphRandom.getNodeCount() < 317080 && randomGraph.nextEvents());
+        while (graphRandom.getNodeCount() < 31708 && randomGraph.nextEvents());
         randomGraph.end() ;
 
 
         System.out.println("Nombre de noeuds d'un réseau Barabasi-Albert  : " + graph.getNodeCount());
-        System.out.println("Degré moyen d'un réseau Barabasi-Albert" + averageDegree(graph));
-        System.out.println("Le coefficient de clustering d'un réseau Barabasi-Albert :" + averageClusteringCoefficient(graph));
+        System.out.println("Degré moyen d'un réseau Barabasi-Albert " + averageDegree(graph));
+        System.out.println("Le coefficient de clustering d'un réseau Barabasi-Albert : " + averageClusteringCoefficient(graph));
         System.out.println("Connexité du graphe Barabasi-Albert : " + isConnected(graph));
+        System.out.println("************************************************************");
 
         System.out.println("Nombre de noeuds d'un réseau Aleatoire  : " + graphRandom.getNodeCount());
         System.out.println("Degré moyen d'un réseau aleatoire" + averageDegree(graphRandom));
         System.out.println("Le coefficient de clustering d'un réseau aleatoire :" + averageClusteringCoefficient(graphRandom));
         System.out.println("Connexité du graphe aléatoire : " + isConnected(graphRandom));
 
+        writDataDest(graph , "destDEGBAL.dat");
+        writeDataDistance(graph , "distancesBAL.dat");
+
+        writDataDest(graphRandom , "destDEG_Alea.dat");
+
+
+    }
+    public static void writDataDest(Graph graph , String filename) {
         int[] destDeg = degreeDistribution(graph);
-        String filename = "destDEGBAL.dat";
         try {
             String filepath = System.getProperty("user.dir") + File.separator + filename;
             FileWriter fw = new FileWriter(filepath);
@@ -65,7 +73,8 @@ public class BarabasiAlbert {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+    }
+    public static void writeDataDistance(Graph graph , String filename){
         List<Node> l = randomNodeSet(graph, 1000);
         HashMap<Integer, Integer> distancesMap = new HashMap<Integer, Integer>();
         double distance = 0;
@@ -90,10 +99,9 @@ public class BarabasiAlbert {
         System.out.println("La distance moyenne calculée avec 1000 noeuds au hasard :" + distMoy);
         System.out.println("La distance moyenne dans un réseau aléatoire avec les mêmes caractéristiques est :" + Math.log(graph.getNodeCount()) / Math.log(averageDegree(graph)));
 
-        String filename1 = "distancesBAL.dat";
 
         try {
-            String filepath = System.getProperty("user.dir") + File.separator + filename1;
+            String filepath = System.getProperty("user.dir") + File.separator + filename;
             FileWriter fw = new FileWriter(filepath);
             BufferedWriter bw = new BufferedWriter(fw);
             for (Integer name : distancesMap.keySet()) {
@@ -102,7 +110,6 @@ public class BarabasiAlbert {
             }
             bw.close();
         } catch (IOException e) {
-            e.printStackTrace();
         }
 
     }
