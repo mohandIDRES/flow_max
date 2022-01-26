@@ -76,8 +76,16 @@ Pour générer un réseau avec la méthode d'attachement préférentiel (Barabas
 - Un reseau Barabasi-Albert est connex contrairement a un reseau aleatoire .
 
 
+# Propagation dans des réseaux
 
+**Question 1**
+- Le taux de propagation d'un virus : </br>
+Le taux de propagation du virus `λ`  est la propabilité de transmission dans une unité de temps `β` / la propabilité de redevenir suseptible `µ` 
+*** `λ  = β / µ `*** 
+ Comme un individu envoie en moyenne un mail par semaine donc `β = 1/7 ` , et un individu met à jour son anti-virus en moyenne deux fois par mois donc `µ = 1/14 ` =>
+`λ` = (1/7) / (1/14) = 2  
 
+- Le seuil épidémique `λc` 
+Le seuil épidémique `λc = <k>/<k²>` , tel que `⟨k⟩=6.622` et `<k²>= 144,631 ` => `λc = 0.046`
 
-
-
+- Le seuil d'un réseau aléatoire du même degré moyen `λc= 1/k+1 ` = 0.131
