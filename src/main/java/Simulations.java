@@ -3,16 +3,18 @@ import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Simulations {
+    int nbJours = 90 ;
+
     public ArrayList simulation1(Graph g){
         String lst = " ";
         ArrayList<String> listFinale= new ArrayList<>();
-        int nbJours = 10 ;
         Random rand = new Random();
-
 
         //Toute la population est en bonne santé
         for(Node node : g )
@@ -64,6 +66,20 @@ public class Simulations {
 
         System.out.println("liste des infectés : " +listFinale +"\n");
         return listFinale;
+
+    }
+
+
+    public void saveData(String filename , ArrayList liste){
+        try {
+            FileWriter file = new FileWriter("Data/"+filename+".dat");
+            for (int i = 1; i < liste.size(); i++) {
+                file.write(i + "  " +liste.get(i));
+            }
+            file.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
