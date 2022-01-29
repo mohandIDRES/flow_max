@@ -3,15 +3,14 @@ import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Simulations {
-    int nbJours = 90 ;
+    int nbJours = 84 ;
 
-    public ArrayList simulation1(Graph g){
+    public String simulation1(Graph g){
         String lst = " ";
         ArrayList<String> listFinale= new ArrayList<>();
         Random rand = new Random();
@@ -56,26 +55,26 @@ public class Simulations {
                 }
                 else infected.add(n);
             }
-            lst += "Jour "+(i+1) +" ==> nb infecté(s) =  "+infected.size()+"\n";
+            System.out.println("j " + i);
+
+            lst +=(i+1)+" "+infected.size()+"\n";
+
         }
 
-        System.out.println();
-        listFinale.add(lst);
+        //listFinale.add(lst);
 
-        System.out.println("Patient Zero : " +patientZero);
+      //  System.out.println("Patient Zero : " +patientZero);
 
-        System.out.println("liste des infectés : " +listFinale +"\n");
-        return listFinale;
+        return lst;
 
     }
 
 
-    public void saveData(String filename , ArrayList liste){
+    public void saveData(String filename , String liste){
         try {
             FileWriter file = new FileWriter("Data/"+filename+".dat");
-            for (int i = 1; i < liste.size(); i++) {
-                file.write(i + "  " +liste.get(i));
-            }
+                file.write(liste);
+
             file.close();
         } catch (Exception e) {
             e.printStackTrace();
