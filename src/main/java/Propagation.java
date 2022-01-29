@@ -47,7 +47,10 @@ public class Propagation {
 
         Simulations simulations = new Simulations();
 
-        simulations.saveData("Scenario_1" ,   simulations.simulation1(g));
+
+      //  simulations.saveData("Scenario_1" ,   simulations.simulation1(g));
+        simulations.saveData("Scenario_2" , simulations.simulation2(g));
+
 
     }
 
