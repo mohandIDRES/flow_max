@@ -5,9 +5,11 @@ import org.graphstream.graph.Node;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Simulations {
+    // 3 mois = 7 jours * 12 semaines  = 84
     int nbJours = 84 ;
 
     public String simulation1(Graph g){
@@ -66,6 +68,63 @@ public class Simulations {
       //  System.out.println("Patient Zero : " +patientZero);
 
         return lst;
+
+    }
+
+    public String simulation2(Graph g){
+        String lst = " ";
+        ArrayList<String> listFinale= new ArrayList<>();
+        Random rand = new Random();
+
+        //Toute la population est en bonne santé
+        for(Node node : g )
+            node.setAttribute("health","healthy");
+
+        List<Node> lst_immunise = Toolkit.randomNodeSet(g, g.getNodeCount()/2);
+        for(Node node:lst_immunise) node.setAttribute("health","immunise");
+
+        //on retire les noeuds immunisés
+        for(Node node:lst_immunise){
+            g.removeNode(node);}
+
+        // definition d'un patient zéro
+        int k = rand.nextInt(g.getNodeCount());
+        Node patientZero = g.getNode(k);
+        patientZero.setAttribute("health","infected");
+
+        ArrayList<Node> infected = new ArrayList<>();//pour stocker les individus infectés qui s'occupe de propager le virus chaque jour
+        infected.add(patientZero);
+        //un tableau pour stocker les individus de l'etat "healthy" en l'etat "infected" ou de l'etat "infected" en l'etat "healthy"
+        ArrayList<Node> temp = new ArrayList<>();
+
+        for(int i=0;i<nbJours;i++){
+            for(Node node:infected){//parcourir tous les individus infectes
+                if(!temp.contains(node)) temp.add(node);
+                if(rand.nextInt(7)+1==1) {//la probabilité de recevoir le mail pour chaque voisin de l'individu infecté est 1/7
+                    for(Edge e:node){
+                        Node voisin = e.getOpposite(node);//obtenir tous les voisins de noeud node
+                        if(!temp.contains(voisin) && !lst_immunise.contains(voisin)){
+                            voisin.setAttribute("health","infected");
+                            temp.add(voisin);
+                        }
+                    }
+                }
+            }
+            //vider le tableau infected,prepare les individus infectés pour lendemain
+            infected.clear();
+            //mettre à jour
+            for(Node node1:temp){
+                if(rand.nextInt(15)+1==1)
+                    node1.setAttribute("health", "healthy");
+                else infected.add(node1);
+            }
+
+            //System.out.println("j " + i);
+
+            lst += (i+1)+" "+infected.size()+"\n";
+        }
+
+        return lst ;
 
     }
 
