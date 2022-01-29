@@ -1,5 +1,7 @@
 import org.graphstream.algorithm.Toolkit;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.stream.file.FileSource;
 import org.graphstream.stream.file.FileSourceEdge;
@@ -27,7 +29,7 @@ public class Propagation {
         FileSource fs = new FileSourceEdge();
         fs.addSink(g);
         try {
-            fs.readAll("/home/idres/Master/RI/data.txt");
+            fs.readAll("data.txt");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -42,6 +44,11 @@ public class Propagation {
         double degreMoyen = Toolkit.averageDegree(g);//Le degré moyen de ce graphe
         System.out.println("Le seuil théorique d'un réseau aléatoire du même degré moyen : " + 1 / (degreMoyen + 1));
 
+
+        Simulations simulations = new Simulations();
+
+        simulations.saveData("Scenario_1" ,   simulations.simulation1(g));
+
     }
 
     public double seuil(int nb) {
@@ -54,6 +61,11 @@ public class Propagation {
         }
         return degreMoyen / degreCarreMoyen;
     }
+
+
+
+
+
 
 
 }
