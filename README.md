@@ -89,3 +89,21 @@ Le taux de propagation du virus `λ`  est la propabilité de transmission dans u
 Le seuil épidémique `λc = <k>/<k²>` , tel que `⟨k⟩=6.622` et `<k²>= 144,631 ` => `λc = 0.046`
 
 - Le seuil d'un réseau aléatoire du même degré moyen `λc= 1/k+1 ` = 0.131
+
+**Question 2:**
+
+***_Scenario 1_***
+
+<img src="Data/Scenario%201.png">
+
+On remarque que la propagation du virus augmente d'une manière très importante les 30 premiers jours pour attendre les environs de 280000 cas d'infections , ensuite la courbe se stabilise jusqu'à la fin de l'expérience .  
+
+***_Scenario 2_***
+<img src="Data/Scenario 2.png">
+
+Le second scénario consiste è immuniser aléatoirement 50% de la population , et donc ils ne peuvent pas être infectés par le virus  .
+Comme dans le premier cas un patient zero est choisi aléatoirement du côté des noeuds non-immunisés , on remarque que le virus commence à se propager dès le 15 ème jour pour infecter pour attendre environ 100000 noeuds et ensuite il se stabilise jusqu'à la fin de l'expérience .
+
+
+***_Scenario 3_***
+
