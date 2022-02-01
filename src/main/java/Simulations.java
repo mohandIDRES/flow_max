@@ -24,6 +24,8 @@ public class Simulations {
 
 
     public String simulation1(Graph g){
+        System.out.println("Demarrage du 1 er scenario ...");
+
         String lst = " ";
         Random rand = new Random();
 
@@ -81,6 +83,7 @@ public class Simulations {
     }
 
     public String simulation2(Graph g){
+        System.out.println("Demarrage du 2 eme scenario ...");
         String lst = " ";
         Random rand = new Random();
 
@@ -131,7 +134,7 @@ public class Simulations {
                 else infected.add(node);
             }
 
-            //System.out.println("j " + i);
+            System.out.println("j " + i);
 
             lst += (i+1)+" "+infected.size()+"\n";
         }
@@ -140,7 +143,9 @@ public class Simulations {
 
     }
 
-    public String simulation3(Graph g) throws IOException {
+    public String simulation3(Graph g){
+        System.out.println("Demarrage du 3 eme scenario ...");
+
         String contenu = "";
         Random r = new Random();
         //trois mois,càd 90 jours
@@ -200,7 +205,7 @@ public class Simulations {
                     node1.setAttribute("health", "healthy");
                 else infected.add(node1);
             }
-         //   System.out.println("j " + i);
+            System.out.println("j " + i);
 
             contenu += (i+1)+" "+infected.size()+"\n";
         }
