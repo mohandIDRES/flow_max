@@ -118,3 +118,9 @@ La différence des degrés moyens est dû nombre élevé de voisin et donc une p
 **Graphe comparant les 3 scénarios**
 
 <img src="Data/Comparaison.png">
+
+**Question 4**
+- Le seuil épidémique du scénario 2 est : 0.086
+- Le seuil épidémique du scénario 3 est : 0.045
+
+Le seuil épidémique du scénario 2 est deux fois plus grand que celui du réseau initial  , tandis que le seuil épidémique du scénario 3 (immunisation selective) est presque égale au scénario initial    
