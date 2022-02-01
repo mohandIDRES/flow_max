@@ -11,6 +11,17 @@ import java.util.Random;
 public class Simulations {
     // 3 mois = 7 jours * 12 semaines  = 84
     int nbJours = 84 ;
+    private Graph g;
+
+    public Simulations(Graph g) throws IOException {
+        this.g = g;
+    }
+
+    public Graph getG(){
+        return this.g;
+    }
+
+
 
     public String simulation1(Graph g){
         String lst = " ";
@@ -84,6 +95,9 @@ public class Simulations {
         for(Node node:lst_immunise){
             g.removeNode(node);}
 
+        System.out.println("le seuil épidémique du réseau avec la stratégie 2 : "
+                + seuil(g.getNodeCount()));
+
         // definition d'un patient zéro
         int k = rand.nextInt(g.getNodeCount());
         Node patientZero = g.getNode(k);
@@ -107,6 +121,7 @@ public class Simulations {
                     }
                 }
             }
+
             //vider le tableau infected,prepare les individus infectés pour lendemain
             infected.clear();
             //mettre à jour
@@ -125,7 +140,7 @@ public class Simulations {
 
     }
 
-    public String simulation3(Graph g){
+    public String simulation3(Graph g) throws IOException {
         String contenu = "";
         Random r = new Random();
         //trois mois,càd 90 jours
@@ -138,6 +153,7 @@ public class Simulations {
         ArrayList<Node> immunise = new ArrayList<>();
         //convaincre 50 % des individus de convaincre un de leurs contacts de mettre à jour en permanence son anti-virus (immunisation sélective)
         List<Node> l = Toolkit.randomNodeSet(g,g.getNodeCount()/2);//l stocke les 50 % des individus
+
         //remplir le tableau immunise
         for(Node node:l){
             Node nodeImmunise = node.getEdge(r.nextInt(node.getDegree())).getOpposite(node);//choisir un des contacts pour les 50 % des individus
@@ -150,6 +166,9 @@ public class Simulations {
         //question 3
         System.out.println("le degré moyen des groupes 0 est :"+someDegreGroupe0/l.size());
         System.out.println("le degré moyen des groupes 1 est :"+someDegreGroupe1/l.size());
+
+        System.out.println("le seuil épidémique du réseau avec la stratégie 3 : "
+                + seuil(g.getNodeCount()));
 
         int k = r.nextInt(immunise.size());//k est pour choisir un node comme le patient zero
         Node patientZero = immunise.get(k);//choisir le premier individu infecté
@@ -181,7 +200,7 @@ public class Simulations {
                     node1.setAttribute("health", "healthy");
                 else infected.add(node1);
             }
-            System.out.println("j " + i);
+         //   System.out.println("j " + i);
 
             contenu += (i+1)+" "+infected.size()+"\n";
         }
@@ -202,4 +221,16 @@ public class Simulations {
         }
 
     }
+    public double seuil(int nb) {
+        int[] dd = Toolkit.degreeDistribution(this.getG());
+        double degreMoyen = Toolkit.averageDegree(this.getG());
+        double degreCarreMoyen = 0;
+        for (int i = 0; i < dd.length; i++) {
+            if (dd[i] != 0)
+                degreCarreMoyen += Math.pow(i, 2) * ((double) dd[i] / nb);
+        }
+        return degreMoyen / degreCarreMoyen;
+    }
+
+
 }
