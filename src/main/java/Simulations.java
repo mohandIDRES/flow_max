@@ -14,7 +14,6 @@ public class Simulations {
 
     public String simulation1(Graph g){
         String lst = " ";
-        ArrayList<String> listFinale= new ArrayList<>();
         Random rand = new Random();
 
         //Toute la population est en bonne santé
@@ -33,7 +32,6 @@ public class Simulations {
         for(int i=0;i<nbJours;i++){
             for(Node node:infected){//parcourir tous les individus infectes
                 if(!tmp.contains(node))
-
                     tmp.add(node);
 
                 //la probabilité de recevoir le mail infecté est 1/7
@@ -73,7 +71,6 @@ public class Simulations {
 
     public String simulation2(Graph g){
         String lst = " ";
-        ArrayList<String> listFinale= new ArrayList<>();
         Random rand = new Random();
 
         //Toute la population est en bonne santé
@@ -113,10 +110,10 @@ public class Simulations {
             //vider le tableau infected,prepare les individus infectés pour lendemain
             infected.clear();
             //mettre à jour
-            for(Node node1:temp){
-                if(rand.nextInt(15)+1==1)
-                    node1.setAttribute("health", "healthy");
-                else infected.add(node1);
+            for(Node node:temp){
+                if(rand.nextInt(14)+1==1)
+                    node.setAttribute("health", "healthy");
+                else infected.add(node);
             }
 
             //System.out.println("j " + i);
@@ -125,6 +122,71 @@ public class Simulations {
         }
 
         return lst ;
+
+    }
+
+    public String simulation3(Graph g){
+        String contenu = "";
+        Random r = new Random();
+        //trois mois,càd 90 jours
+
+        for(Node node: g)//ajouter une attribut pour chaque noeud
+            node.setAttribute("health","healthy");
+
+        double someDegreGroupe0 = 0;
+        double someDegreGroupe1 = 0;
+        ArrayList<Node> immunise = new ArrayList<>();
+        //convaincre 50 % des individus de convaincre un de leurs contacts de mettre à jour en permanence son anti-virus (immunisation sélective)
+        List<Node> l = Toolkit.randomNodeSet(g,g.getNodeCount()/2);//l stocke les 50 % des individus
+        //remplir le tableau immunise
+        for(Node node:l){
+            Node nodeImmunise = node.getEdge(r.nextInt(node.getDegree())).getOpposite(node);//choisir un des contacts pour les 50 % des individus
+            nodeImmunise.setAttribute("health","immunise");
+            immunise.add(nodeImmunise);
+            someDegreGroupe0 += node.getDegree();
+            someDegreGroupe1 += nodeImmunise.getDegree();
+        }
+
+        //question 3
+        System.out.println("le degré moyen des groupes 0 est :"+someDegreGroupe0/l.size());
+        System.out.println("le degré moyen des groupes 1 est :"+someDegreGroupe1/l.size());
+
+        int k = r.nextInt(immunise.size());//k est pour choisir un node comme le patient zero
+        Node patientZero = immunise.get(k);//choisir le premier individu infecté
+        patientZero.setAttribute("health","infected");
+
+        ArrayList<Node> infected = new ArrayList<>();//pour stocker les individus infectés qui s'occupe de propager le virus chaque jour
+        infected.add(patientZero);
+        //un tableau pour stocker les individus de l'etat "healthy" en l'etat "infected" ou de l'etat "infected" en l'etat "healthy"
+        ArrayList<Node> temp = new ArrayList<>();
+
+        for(int i=0;i<nbJours;i++){
+            for(Node node:infected){//parcourir tous les individus infectes
+                if(!temp.contains(node)) temp.add(node);
+                if(r.nextInt(7)+1==1) {//la probabilité de recevoir le mail pour chaque voisin de l'individu infecté est 1/7
+                    for(Edge e:node){
+                        Node voisin = e.getOpposite(node);//obtenir tous les voisins de noeud node
+                        if(!temp.contains(voisin) && !l.contains(voisin)){
+                            voisin.setAttribute("health","infected");
+                            temp.add(voisin);
+                        }
+                    }
+                }
+            }
+            //vider le tableau infected,prepare les individus infectés pour lendemain
+            infected.clear();
+            //mettre à jour
+            for(Node node1:temp){
+                if(r.nextInt(14)+1==1)
+                    node1.setAttribute("health", "healthy");
+                else infected.add(node1);
+            }
+            System.out.println("j " + i);
+
+            contenu += (i+1)+" "+infected.size()+"\n";
+        }
+        return contenu;
+
 
     }
 
