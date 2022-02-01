@@ -107,3 +107,14 @@ Comme dans le premier cas un patient zero est choisi aléatoirement du côté de
 
 ***_Scenario 3_***
 
+<img src="Data/Scenario%203.png">
+
+Comme on peut le voir, le nombre d'infectés est négligeable par rapport aux deux autres scénarios avec un maximum de 4 infectés pendant la période de l'expérience .
+
+- Le degré moyen du groupe 0 est : 6.640904503595308
+- Le degré moyen du groupe 1 est : 18.532553298852026
+
+La différence des degrés moyens est dû nombre élevé de voisin et donc une probabilité élevée d'être immunisés.
+**Graphe comparant les 3 scénarios**
+
+<img src="Data/Comparaison.png">
