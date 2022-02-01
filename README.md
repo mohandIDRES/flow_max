@@ -99,6 +99,7 @@ Le seuil épidémique `λc = <k>/<k²>` , tel que `⟨k⟩=6.622` et `<k²>= 144
 On remarque que la propagation du virus augmente d'une manière très importante les 30 premiers jours pour attendre les environs de 280000 cas d'infections , ensuite la courbe se stabilise jusqu'à la fin de l'expérience .  
 
 ***_Scenario 2_***
+
 <img src="Data/Scenario 2.png">
 
 Le second scénario consiste è immuniser aléatoirement 50% de la population , et donc ils ne peuvent pas être infectés par le virus  .
@@ -124,3 +125,19 @@ La différence des degrés moyens est dû nombre élevé de voisin et donc une p
 - Le seuil épidémique du scénario 3 est : 0.045
 
 Le seuil épidémique du scénario 2 est deux fois plus grand que celui du réseau initial  , tandis que le seuil épidémique du scénario 3 (immunisation selective) est presque égale au scénario initial    
+
+**Question 5 -Méthode d'attachement préférentiel-**
+Voici les résultats des simulations avec la méthode d'attachement préférentiel (Barabàsi-Albert)
+**scénario 2**
+
+<img src="Data/BA_scenario_2.png">
+
+**scénario 3**
+
+<img src="Data/BA_scenario3.png">
+
+
+**Comparaison entre les deux scénarios**
+
+<img src="Data/comparaison_BA.png">
+
